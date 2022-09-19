@@ -15,6 +15,7 @@ spec:
       containers:
       - name: react-docker
         image: 131333373690.dkr.ecr.ap-southeast-1.amazonaws.com/react:Latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
 
