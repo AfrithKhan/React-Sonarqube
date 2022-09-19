@@ -1,6 +1,14 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+      - echo Installing app dependencies...
+      - curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/kubectl   
+      - chmod +x ./kubectl
+      - mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
+      - echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
+      - source ~/.bashrc
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
@@ -16,3 +24,4 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - kubectl config get-contexts
