@@ -30,4 +30,4 @@ phases:
       - kubectl config set-context default --cluster=microk8s-cluster --user=admin
       - kubectl config use-context default
       - kubectl config view
-      - kubectl get pods    ##
+      - kubectl get pods    ###
