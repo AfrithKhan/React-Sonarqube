@@ -30,4 +30,4 @@ phases:
       - kubectl config set-context default --cluster=k8s --user=gitlab
       - kubectl config use-context default
       - kubectl config get-contexts
-      - kubectl get pods    
+      - kubectl get pods    ##
