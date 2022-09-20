@@ -33,7 +33,7 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: build    
+  base-directory: public  
   # build:
   #   commands:
   #     - echo Build started on `date`
