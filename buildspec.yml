@@ -30,10 +30,10 @@ phases:
       - sonar-scanner -Dsonar.projectKey=react-sonar -Dsonar.sources=. -Dsonar.host.url=http://54.254.158.108:9000  -Dsonar.login=sqp_cf56a8fc390fc875976ef3ce4c7d02dbfabdf1d1          
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-  artifacts:
-    files:
-      - '**/*'
-    base-directory: build    
+artifacts:
+  files:
+    - '**/*'
+  base-directory: build    
   # build:
   #   commands:
   #     - echo Build started on `date`
