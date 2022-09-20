@@ -1,5 +1,8 @@
 version: 0.2
 
+env:
+  shell: bash
+
 phases:
   # install:
   #   commands:
@@ -22,7 +25,6 @@ phases:
       - sonar-scanner -v
   pre_build:
     commands:
-      - source /etc/profile.d/sonar-scanner.sh
       - cd ../..
       - cd /codebuild/output/src*/src
       - sonar-scanner -Dsonar.projectKey=react-sonar -Dsonar.sources=. -Dsonar.host.url=http://54.254.158.108:9000  -Dsonar.login=sqp_cf56a8fc390fc875976ef3ce4c7d02dbfabdf1d1          
