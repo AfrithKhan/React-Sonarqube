@@ -9,7 +9,7 @@ phases:
   #     - mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
   #     - echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
   #     # - source ~/.bashrc
-  sonarqube_install:
+  install:
     commands:
       - mkdir /downloads/sonarqube -p
       - cd /downloads/sonarqube
@@ -20,13 +20,11 @@ phases:
       - echo -e "#/bin/bash \n export PATH='$PATH:/opt/sonar-scanner/bin'" >> /etc/profile.d/sonar-scanner.sh
       - source /etc/profile.d/sonar-scanner.sh
       - sonar-scanner -v
-  sonarqube_scan:
+  pre_build:
     commands:
       - cd ../..
       - cd /codebuild/output/src*/src
-      - sonar-scanner -Dsonar.projectKey=react-sonar -Dsonar.sources=. -Dsonar.host.url=http://54.254.158.108:9000  -Dsonar.login=sqp_cf56a8fc390fc875976ef3ce4c7d02dbfabdf1d1    
-  pre_build:
-    commands:
+      - sonar-scanner -Dsonar.projectKey=react-sonar -Dsonar.sources=. -Dsonar.host.url=http://54.254.158.108:9000  -Dsonar.login=sqp_cf56a8fc390fc875976ef3ce4c7d02dbfabdf1d1          
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
