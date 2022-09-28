@@ -1,9 +1,12 @@
 version: 0.2
 
+# env:
+#   shell: bash
+
 phases:
-  install:
-    runtime-versions:
-        docker: 18
+  # install:
+  #   runtime-versions:
+  #       docker: 18
   pre_build:
     commands:
       - apt-get install wget apt-transport-https gnupg
