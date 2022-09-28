@@ -4,7 +4,7 @@ WORKDIR /var/www/
 
 COPY . .
 
-RUN npm install -g npm@8.19.2
+RUN npm install 
 
 RUN npm run build
 
