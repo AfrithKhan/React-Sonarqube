@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+        docker: 18
+  pre_build:
+    commands:
+      - apt-get install wget apt-transport-https gnupg
+      - wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | apt-key add -
+      - echo deb https://aquasecurity.github.io/trivy-repo/deb bionic main | tee -a /etc/apt/sources.list.d/trivy.list
+      - apt-get update
+      - apt-get install -y trivy
+  build:
+    commands:
+      - docker build -t react:success .
+  post_build:
+    commands:
+      - trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL react:success
+    #  - docker push $REPOSITORY_URI:success
+    
