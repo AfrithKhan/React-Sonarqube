@@ -19,6 +19,6 @@ phases:
       - docker build -t react:success .
   post_build:
     commands:
-      - trivy react:success --no-progress --exit-code 1 --severity HIGH,CRITICAL 
+      - trivy image react:success --no-progress --exit-code 1 --severity HIGH,CRITICAL 
     #  - docker push $REPOSITORY_URI:success
     
